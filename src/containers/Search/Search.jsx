@@ -36,6 +36,22 @@ class Search extends Component {
     handleClick = () => {
         this.state.results.sort((a, b) => (a.last > b.last) ? 1 : -1)
     }
+
+    sortbyname = () => {
+      const sortedUsers = this.state.results.sort((a, b) => {
+        const aValue = a.name.first;
+        const bValue = b.name.first;
+        if (aValue < bValue) {
+          return -1;
+        }
+        if (aValue > bValue) {
+          return 1;
+        }
+          return 0;
+      });
+      console.log({ results: sortedUsers});
+      this.setState(sortedUsers);
+    }
   
     render() {
       return (
@@ -49,7 +65,7 @@ class Search extends Component {
           <button 
           search={this.state.search}
           className="btn btn-primary"
-          onClick={this.handleClick}>
+          onClick={this.sortbyname}>
                 Sort By Name
           </button>
           </div>
